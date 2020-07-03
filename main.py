@@ -4,7 +4,7 @@ from Cuatro_en_raya import mostrar_tablero_4, hay_ganador_4, movimiento_Player1_
 
 print()
 print()
-print("              BIENVENIDO AL ARCADE")
+print("              BIENVENIDOS AL ARCADE")
 print()
 print()
 print()
