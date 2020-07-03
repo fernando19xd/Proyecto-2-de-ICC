@@ -44,7 +44,7 @@ def presentacion_1():
   print("            ", juego)
   print()
   print()
-  print("Sale la ficha O")
+  print("Comienza la ficha O")
   print()
   print(" Elige O/X")
   print()
