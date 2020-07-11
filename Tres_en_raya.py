@@ -1,3 +1,5 @@
+import random
+
 p1 = 'Player 1'
 p2 = 'Player 2'
 
@@ -71,3 +73,38 @@ def movimiento_Player2_3(tablero):
                 print("    Esta posición esta ocupada")
             else:
                 return posicion - 1
+
+
+def movimientoMaquina(tablero, ordenador, usuario):
+  for i in range(9):
+    copia = list(tablero)
+    if casilla_libre(copia, i):
+      copia[i] = ordenador
+      if hay_ganador_3(copia, ordenador):
+        return i
+
+  for i in range(9):
+    copia = list(tablero)
+    if casilla_libre(copia, i):
+      copia[i] = usuario
+      if hay_ganador_3(copia, usuario):
+        return i
+
+  if ordenador == "X":
+    if tablero[4] == " ":
+      return 4
+    else:
+      vacias = []
+      for i in [0, 2, 6, 8]:
+        if tablero[i] == " ":
+          vacias.append(i)
+      return random.choice(vacias)
+
+  elif ordenador == "O":
+    contador = 0
+    for i in range(9):
+      if tablero[i] == " ":
+        contador += 1
+    if contador == 7:
+      if tablero[4] == " ":
+        return 4

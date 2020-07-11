@@ -1,4 +1,4 @@
-from Tres_en_raya import mostrar_tablero_3, hay_ganador_3, movimiento_Player1_3, movimiento_Player2_3
+from Tres_en_raya import mostrar_tablero_3, hay_ganador_3, movimiento_Player1_3, movimiento_Player2_3, movimientoMaquina
 from Cuatro_en_raya import mostrar_tablero_4, hay_ganador_4, movimiento_Player1_4, movimiento_Player2_4
 
 
@@ -25,13 +25,22 @@ while True:
     print("Ingrese un juego que este dentro del arcade")
 
 
-Player1 = input("Ingrese nombre jugador 1: ")
-Player2 = input("Ingrese nombre jugador 2: ")
+Player1 = input("Ingrese nombre Player 1: ")
+Player2 = input("Ingrese nombre Player 2: ")
 p1 = Player1
 p2 = Player2
 
 
 juego = ""
+
+
+def presentacion_0():
+  modo = ""
+  while modo != "solo" and modo != "multiplayer":
+    modo = input("Ingrese la modalidad de juego: ")
+  return modo
+
+
 def presentacion_1():
   if tipo_juego == "3":
     juego = "Tres en raya"
@@ -46,7 +55,7 @@ def presentacion_1():
   print()
   print("Comienza la ficha O")
   print()
-  print(" Elige O/X")
+  print(" Elige O/X Player 1")
   print()
   print()
   
@@ -63,6 +72,7 @@ def presentacion_1():
     Player2 = "O"
   
   return Player1, Player2
+
 
 
 def seguir_jugando():
@@ -102,7 +112,9 @@ if tipo_juego == "3":
 
   while jugando_3:
     tablero = [" "] * 9
-  
+
+    modo = presentacion_0()
+
     Player1, Player2 = presentacion_1()
   
     mostrar_tablero_3(tablero)
@@ -130,12 +142,15 @@ if tipo_juego == "3":
           break
 
       elif turno == "Player 2":
-        casilla = movimiento_Player2_3(tablero)
+        if modo == "multiplayer":
+          casilla = movimiento_Player2_3(tablero)
+        elif modo == "solo":
+          casilla = movimientoMaquina(tablero, Player2, Player1)
         tablero[casilla] = Player2
         turno = "Player 1"
         mostrar_tablero_3(tablero)
         if hay_ganador_3(tablero, Player2):
-          print("          Has ganado", p2)
+          print("          Ha ganado", p2)
           partida = False
           break
     jugando_3 = seguir_jugando()
