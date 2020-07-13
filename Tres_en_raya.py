@@ -75,7 +75,7 @@ def movimiento_Player2_3(tablero):
                 return posicion - 1
 
 
-def movimientoMaquina(tablero, ordenador, usuario):
+def movimientoMaquina_3(tablero, ordenador, usuario):
   for i in range(9):
     copia = list(tablero)
     if casilla_libre(copia, i):
